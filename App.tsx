@@ -1,51 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { Button, Dimensions, StyleSheet, Text, View } from 'react-native';
-import AnchrableScrollView, { Anchor } from './src/AnchrableScrollView';
+import AnchrableScrollView, { Anchor, HeaderAnchors } from './src/AnchrableScrollView';
 
 export default function App() {
   const ref = React.useRef();
   const anchorsRef = [
-    React.createRef(),
-    React.createRef(),
+   {name: "#1", label: "My first section", ref: React.createRef()},
+   {name: "#2", label: "Second veryyyyyyyy long section", ref: React.createRef()}
   ]
-  const anchor = React.createRef()
+  const anchor =  {name: "#3", label: "Third section", ref: React.createRef()}
+
+  const goToAnchor = React.useCallback(name => ref.current?.goToAnchor?.(name), [ref?.current])
 
   return (
+    <View style={{marginTop: 50}}>
+    <HeaderAnchors 
+      anchors={[...anchorsRef, anchor]}
+      goToAnchor={goToAnchor}
+    />
     <AnchrableScrollView
       ref={ref}
     >
-      <Button
-        title="Anchor1"
-        onPress={() => {
-          // console.log(ref.current)
-          ref?.current?.goToAnchor("#0")
-        }}
-      />
-      <Button
-        title="Anchor2"
-        onPress={() => {
-          // console.log(ref.current)
-          ref?.current?.goToAnchor("#1")
-        }}
-      />
-      <Button
-        title="Anchor3"
-        onPress={() => {
-          // console.log(ref.current)
-          ref?.current?.goToAnchor("#3")
-        }}
-      />
       {
        anchorsRef.map((e, index) => (
           <View key={`${index}`}>
             <Anchor 
-              ref={e}
-              name={`#${index}`}
-              index={index}
-              nbAnchors={anchorsRef.length}
+              ref={e.ref}
+              name={e.name}
             >
-              <Text>ANCHOR #{index}</Text>
+              <Text>{e.label}</Text>
             </Anchor>
           <View style={{
             height: Dimensions.get('screen').height,
@@ -59,8 +43,9 @@ export default function App() {
           </View>
         ))
       }
-      <Anchor name="#3" ref={anchor} style={{height: 1000, borderWidth: 1, borderColor: 'green'}}/>
+      <Anchor name={anchor.name} ref={anchor.ref} style={{height: 1000, borderWidth: 1, borderColor: 'green'}}/>
     </AnchrableScrollView>
+    </View>
   );
 }
 

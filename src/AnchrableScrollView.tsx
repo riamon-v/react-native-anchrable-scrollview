@@ -26,7 +26,8 @@ const AnchrableScrollView = React.forwardRef((props: AnchrableScrollViewProps, r
     }, [])
 
     const goToAnchor = (anchorName: string) => {
-        const {x, y} = anchorsMeasurements?.get(anchorName)
+        const anchor = anchorsMeasurements?.get(anchorName)
+        const {x, y} = anchor;
         if (x !== undefined && y !== undefined)
             _scrollView.current?.scrollTo({x, y})
     }
@@ -46,4 +47,5 @@ const AnchrableScrollView = React.forwardRef((props: AnchrableScrollViewProps, r
 })
 
 export * from './Anchor'
+export * from './HeaderAnchors'
 export default AnchrableScrollView
