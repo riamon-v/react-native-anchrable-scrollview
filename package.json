@@ -29,7 +29,7 @@
     "scroll"
   ],
   "author": "Vincent Riamon",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/riamon-v/react-native-anchrable-scrollview/issues"
   },
