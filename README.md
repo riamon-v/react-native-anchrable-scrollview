@@ -80,6 +80,8 @@ function App() {
 * Use [`HeaderAnchors`](#HeaderAnchors) component to have as many buttons as anchors
 
 ``` javascript
+import AnchrableScrollView, { Anchor, HeaderAnchors } from 'react-native-anchrable-scrollview'
+
 function App() {
   const ref = React.useRef();
   const anchorsRef = [
@@ -136,7 +138,7 @@ function App() {
 
 ### Documentation
 
-##### AnchrableScrollView
+#### AnchrableScrollView
 
 > PROPS
 
@@ -158,7 +160,7 @@ function App() {
 |---|
 | You can access all [method of standard ScrollView](https://reactnative.dev/docs/scrollview#methods) with <br> `ref?.current?._scrollView?.current.method`|
 
-##### Anchor
+#### Anchor
 
 > PROPS
 
@@ -169,7 +171,7 @@ function App() {
 | children | Children pass inside the view | *not required* | React.ReactNode |
 
 
-##### HeaderAnchors
+#### HeaderAnchors
 
 ### Contributing
 
