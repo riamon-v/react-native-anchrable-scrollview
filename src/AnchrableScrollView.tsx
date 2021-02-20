@@ -1,17 +1,18 @@
 import React from 'react'
 import { ScrollView, ScrollViewProps } from 'react-native'
-import useMeasurements from './useMeasurements'
+import { useAnchorsMeasurements } from './useAnchorsMeasurements'
 
 interface AnchrableScrollViewProps extends ScrollViewProps {
     children: any,
+    ref?: React.RefObject<ScrollView>
 }
 
-const AnchrableScrollView = React.forwardRef((props: AnchrableScrollViewProps, ref) => {
+const AnchrableScrollView = React.forwardRef((props: AnchrableScrollViewProps, ref: any) => {
 
     const { children } = props
     const _scrollView = React.useRef<ScrollView>(null)
     const [v, forceUpdate] = React.useState(false)
-    const anchorsMeasurements = useMeasurements(children, _scrollView, [v])
+    const anchorsMeasurements = useAnchorsMeasurements(children, _scrollView, [v])
 
 
     /**
@@ -27,9 +28,9 @@ const AnchrableScrollView = React.forwardRef((props: AnchrableScrollViewProps, r
 
     const goToAnchor = (anchorName: string) => {
         const anchor = anchorsMeasurements?.get(anchorName)
-        const {x, y} = anchor;
-        if (x !== undefined && y !== undefined)
-            _scrollView.current?.scrollTo({x, y})
+        // const {x, y} = anchor;
+        if (anchor?.x !== undefined && anchor?.y !== undefined)
+            _scrollView.current?.scrollTo({x: anchor.x, y: anchor.y})
     }
 
     React.useImperativeHandle(ref, () => ({
@@ -46,6 +47,4 @@ const AnchrableScrollView = React.forwardRef((props: AnchrableScrollViewProps, r
 
 })
 
-export * from './Anchor'
-export * from './HeaderAnchors'
-export default AnchrableScrollView
+export {AnchrableScrollView}

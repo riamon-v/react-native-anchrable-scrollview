@@ -4,10 +4,10 @@ import { View, ViewProps } from "react-native"
 interface AnchorProps extends ViewProps {
     name: string;
     children?: React.ReactNode
-    // ref: any,
+    ref?: React.RefObject<View>,
 }
 
-const Anchor = React.forwardRef((props : AnchorProps, ref) => {
+const Anchor = React.forwardRef((props : AnchorProps, ref?: React.Ref<View>) => {
     return (
         <View 
             ref={ref}

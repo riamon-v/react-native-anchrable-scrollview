@@ -20,7 +20,7 @@ const HeaderAnchors = (props: HeaderAnchorsProps) => {
             {...props}
         >
             {
-                props.anchors?.map((a, index) => 
+                props.anchors?.map((a: any, index: number) => 
                 <TouchableOpacity
                     key={`headerButton#${index}`}
                     onPress={() => props.goToAnchor(a.name)}

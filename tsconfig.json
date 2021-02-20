@@ -1,12 +1,25 @@
 {
-  "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "jsx": "react-native",
-    "lib": ["dom", "esnext"],
-    "moduleResolution": "node",
-    "noEmit": true,
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "strict": true
+    "compilerOptions": {
+      "target": "es6",
+      "module": "es6",
+      "declaration": true,
+      "outDir": "./lib",
+      "strict": true,
+      "jsx": "react-native",
+      "skipLibCheck": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "noImplicitAny": false,
+      "lib": ["dom", "esnext"],
+      "moduleResolution": "node",
+      // "noEmit": true,
+      "resolveJsonModule": true,
+    },
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "node_modules",
+      "**/__tests__/*"
+    ]
   }
-}

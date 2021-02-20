@@ -17,7 +17,7 @@ const useAnchorsMeasurements = (
     const [measurements, setMeasurements] =React.useState<Map<string, MeasurementType> | undefined>(undefined)
 
     const visitAllChildren = (element: React.ReactNode, callback: (c: any) => void) => {
-        React.Children.forEach(element, (child) => {
+        React.Children.forEach(element, (child: React.ReactNode) => {
             if (!React.isValidElement(child)) {
                 return child;
             }
@@ -33,7 +33,7 @@ const useAnchorsMeasurements = (
       React.useLayoutEffect(() => {
         const map: Map<string, MeasurementType> = new Map()
 
-        visitAllChildren(children, (c) => {
+        visitAllChildren(children, (c: any) => {
             // console.log("HERE", c)
             if (c.type === Anchor) {
                 c?.ref?.current?.measureLayout(findNodeHandle(parentContainer?.current), 
@@ -52,4 +52,4 @@ const useAnchorsMeasurements = (
     return measurements
 }
 
-export default useAnchorsMeasurements
+export { useAnchorsMeasurements }
