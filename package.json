@@ -1,6 +1,6 @@
 {
   "name": "react-native-anchrable-scrollview",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A simple scrollview where you can add anchors to go directly to the point the anchor is placed",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

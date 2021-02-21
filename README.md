@@ -6,7 +6,15 @@ A simple component that allow you to put anchors inside any children of a scroll
 * Each component accepts props of the initial react-native component
 * Typescript support
 
-### Installation
+Works for both **Android & IOS**
+
+<h4 style="color: red">NOT WORKING IN WEB</h4>
+
+![](assets/Demo.gif)
+
+##[View demo on snack.expo.io](https://snack.expo.io/@riamon-v/react-native-anchrable-scrollview)
+
+## Installation
 
 If using yarn:
 
@@ -18,14 +26,17 @@ If using npm:
 ```shell 
 $ npm i react-native-anchrable-scrollview
 ```
+---
 
-### List of components
+## List of components
 
 * `AnchrableScrollView` which is a component based on react-native Scrollview that calculates positions of Anchors inside and provide a `goToAnchor`function
 * `Anchor`which is a component base on react-native View component
 * `HeaderAnchors` which is a horizontal scrollview including buttons for each anchor inside the AnchrableScrollView
 
-### Usage
+---
+
+## Usage
 
 ``` javascript
 import AnchrableScrollView, { Anchor } from 'react-native-anchrable-scrollview'
@@ -36,7 +47,7 @@ Wrap all your anchors component inside one top parent `AnchrableScrollView` comp
 The `AnchrableScrollView` component will look for all `Anchors` components inside itself recursively. 
 Then you can put an anchor whereever you want in the component tree, as long as the top parent is an `AnchrableScrollView`
 
-###### Basic Usage
+##### Basic Usage
 * Create a ref for the scrollView
 * Create an array of refs for the anchors
 * useCallback on the provided function goToAnchor
@@ -74,7 +85,7 @@ function App() {
 }
 ```
 
-###### Better Usage
+##### Better Usage
 
 * Map throw the anchorsRef array to make section with anchors.
 * Use [`HeaderAnchors`](#HeaderAnchors) component to have as many buttons as anchors
@@ -128,6 +139,7 @@ function App() {
   );
 }
 ```
+---
 
 <!-- ### Demo -> Show me what you got
 
@@ -136,7 +148,7 @@ function App() {
 [Another Link to your awesome Demo](#) -->
 
 
-### Documentation
+## Documentation
 
 #### AnchrableScrollView
 
@@ -173,12 +185,52 @@ function App() {
 
 #### HeaderAnchors
 
+![](assets/HeaderComponent.gif)
+
+> PROPS
+
+| Name | Description | Details | Type |
+|------|-------------|---------|------|
+| anchors | Array of anchors declared above | *required* | array |
+| goToAnchor  | callback to specify how to go to an anchor | *required* | Func |
+| tagStyle | Button container style | *optional* | any |
+| tagTextStyle | Style of the text inside a button | *optional* | any |
+
+| Accepts any props of the [`ScrollView` Component](https://reactnative.dev/docs/scrollview#props) of react-native| 
+|---|
+
+#### useAnchorsMeasurements
+
+This hook will provide you the set of measurements for Each anchors. It will return a Map with:
+* `key`: the name of the anchor
+* `value`: the measurement of that anchor (x, y, height, width)
+
+
+**Basic Usage**
+``` javascript
+    const { children } = props
+    const _scrollView = React.useRef<ScrollView>(null)
+    const anchorsMeasurements = useAnchorsMeasurements(children, _scrollView, [])
+```
+
+> PARAMS
+
+| Name | Description | Details | Type |
+|------|-------------|---------|------|
+| children | The childrens you want to look for `Anchors` | *required* | React.ReactNode |
+| parentContainer  | The very top container which is the scrollView | *required* | React.RefObject |
+| deps | dependencies to recalculates measurements when deps are changing | *optional* | any |
+
+---
+
 ### Contributing
 
 Pull requests are always welcome! Feel free to open a new GitHub issue for any changes that can be made.
 Keep it simple. Keep it minimal. Don't put every single feature just because you can.
 
 Working on your first Pull Request? You can learn how from this free series How to Contribute to an Open Source Project on GitHub
+
+---
 
 ### Authors or Acknowledgments
 
